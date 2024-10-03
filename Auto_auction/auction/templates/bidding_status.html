@@ -1,0 +1,109 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<style>
+    .container-custom {
+        background: rgb(31, 41, 55);
+        color: #e0e0e0;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 5%;
+    }
+    .heading {
+        color: #00bfff;
+        font-weight: bold;
+        margin-top: 2%;
+    }
+    .table-custom {
+        background: rgb(17, 24, 39);
+        color: #e0e0e0;
+        border-radius: 8px;
+        border: 1px solid #444;
+        width: 100%;
+    }
+    .table-custom thead {
+        background: rgb(31, 41, 55);
+    }
+    .table-custom th, .table-custom td {
+        color: white;
+        padding: 10px;
+        text-align: center;
+        background-color:#333;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .status-paid {
+        color: green;
+    }
+    .status-rejected {
+        font-size: 20px;
+        color: red;
+    }
+    .status-available {
+        color: #e0e0e0;
+    }
+</style>
+
+<div class="container container-custom">
+    <center>
+        <h2 class="heading">Bidding Status</h2>
+    </center>
+    <hr>
+    <div class="container-fluid" style="margin-top:5%;">
+        <table class="table table-bordered table-custom" id="myTable">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Product Name</th>
+                    <th>Seller Name</th>
+                    <th>Session Date</th>
+                    <th>Session Time</th>
+                    <th>Result</th>
+                    <th>Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in pro %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.aucted_product.product.name }}</td>
+                    <td>{{ i.aucted_product.user.user.username }}</td>
+                    <td>{{ i.aucted_product.product.auction_date }}</td>
+                    <td>{{ i.aucted_product.product.auction_time }}</td>
+                    {% if i.result %}
+                    <td>{{ i.result }}</td>
+                    {% else %}
+                    <td style="color:green;">Start on time</td>
+                    {% endif %}
+                    {% if i.payment.pay == "pending" %}
+                    <td><a href="{% url 'Payment_mode' i.id %}" style="text-decoration:none;">
+                        <button class="btn btn-primary">Pay online</button></a>
+                    </td>
+                    {% else %}
+                        {% if i.payment.pay == "paid" %}
+                        <td class="status-paid">Paid</td>
+                        {% else %}
+                            {% if i.payment.pay == "reject" %}
+                            <td class="status-rejected"><i class="fa fa-times"></i></td>
+                            {% else %}
+                            <td class="status-available">Not Available</td>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var el_up = document.getElementById("GFG_UP");
+    el_up.innerHTML = "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

@@ -1,0 +1,9 @@
+sup_user{
+    uname=divy
+    email=divy@gmail.com
+    pass=1234
+}
+#i dont create membership model and delete in view related to membership
+#bypass result and payment model
+
+#ALLOWED_HOSTS = ['.vercel.app']

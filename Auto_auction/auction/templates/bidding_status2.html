@@ -1,0 +1,48 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<div class="container" style="width: 100%; background: rgb(31, 41, 55); color: #e0e0e0; padding: 20px; margin-top: 70px;">
+    <center>
+        <h2 style="font-family: 'Arial', sans-serif; color: #00bfff; font-weight: bold; margin-top: 2%;">Bidding Status</h2>
+    </center>
+    <hr>
+    <div class="container-fluid" style="margin-top: 5%;">
+        <table class="table table-bordered" id="myTable" style="background: rgb(31, 41, 55); color: #e0e0e0; border: 1px solid #444;">
+            <thead>
+                <tr style="background: #333; color: #e0e0e0;">
+                    <th>Sr. No</th>
+                    <th>Product Name</th>
+                    <th>Seller Name</th>
+                    <th>Session Date</th>
+                    <th>Session Time</th>
+                    <th>Status</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in pro %}
+                    <tr style="background: #333; color: #e0e0e0;">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.product.name}}</td>
+                        <td>{{i.user.user.username}}</td>
+                        <td>{{i.product.auction_date}}</td>
+                        <td>{{i.product.auction_time}}</td>
+                        <td>{{i.product.status}}</td>
+                        {% if i.product.status == 'Done' %}
+                            <td>{{i.winner}}</td>
+                        {% else %}
+                            <td style="background-color: #333;">Not Started / Not Proper Bid</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var el_up = document.getElementById("GFG_UP");
+    if (el_up) {
+        el_up.innerHTML = "Click on the LINK for further confirmation.";
+    }
+</script>
+{% endblock %}

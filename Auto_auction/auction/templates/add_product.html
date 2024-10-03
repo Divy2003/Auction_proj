@@ -1,0 +1,77 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="container" style="background: rgb(31, 41, 55); color: #e0e0e0; margin-top: 60px; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <h2 style="font-weight: bold; color: #00bfff; margin-bottom: 20px; text-align: center;">Add Product</h2>
+    <hr style="border-color: #e0e0e0;">
+
+    <div class="container-fluid" style="max-width: 600px; margin: auto;">
+        <form method="post" action="" id="indexForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="exampleFormControlSelect1" style="color: #e0e0e0;">Select Category</label>
+                    <select class="form-control" id="programming" name="cat" onchange="updateSubcategories()">
+                        <option value="">---select Category---</option>
+                        <option value="bike">Bike</option>
+                        <option value="car">Car</option>
+                        <option value="tractor">Tractor</option>
+                        <option value="bike-p">Bike-parts</option>
+                        <option value="car-p">Car-parts</option>
+                        <option value="tractor-p">Tractor-parts</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="exampleInputPassword1" style="color: #e0e0e0;">Product Name</label>
+                    <input type="text" class="form-control" placeholder="Enter product Name" id="exampleInputPassword1" name="p_name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputPassword1" style="color: #e0e0e0;">Minimum Price</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" name="price">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="exampleInputPassword1" style="color: #e0e0e0;">Product Image</label>
+                    <input type="file" class="form-control" id="exampleInputPassword1" name="image">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_date" style="color: #e0e0e0;">Select Date:</label>
+                        <input type="date" name="date" required id="id_date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_time" style="color: #e0e0e0;">Select Time:</label>
+                        <input type="time" name="time" required id="id_time" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div align="center">
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:20px;">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if terror %}
+<script>
+    alert('1 new Product Added Successfully');
+    window.location = "{% url 'all_product' %}";
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container" style="width:100%; background: rgb(31, 41, 55); color: #e0e0e0; padding: 20px; margin-top: 70px;">
+    <center>
+        <h2 style="font-weight: bold; color: #00bfff; margin-top: 2%;">All Accepted Products</h2>
+    </center>
+    <hr>
+    <div class="container-fluid">
+        <h3 class="text-center" style="color: #E6120E;">{{message1}}</h3>
+        <div class="row">
+            {% for j in pro %}
+                {% if j.product.status == 'Accept' or j.product.status == 'Done' %}
+                    <div class="col-md-3 mb-4">
+                        <div style="background: rgb(31, 41, 55); color: #e0e0e0; padding: 15px; border-radius: 8px; border: 1px solid #444;">
+                            <center>
+                                <button class="btn btn-success" style="width: 70%; background-color: #28a745; border: none;">
+                                    <i style="color: yellow; font-size: 20px;" class="fa fa-clock-o"></i> {{j.product.auction_time}}
+                                </button>
+                                <img src="{{j.product.images.url}}" style="margin-top: 1%; width: 170px; height: 170px;">
+                            </center>
+                            <div style="padding: 10px;">
+                                <h5 style="color: #e0e0e0; font-weight: bold;">{{j.product.name}}</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span style="font-weight: bold; color: #1e90ff;">&#8377; : {{j.product.min_price}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if j.product.status != 'Done' %}
+                                <a href="{% url 'particpated_user' j.id %}">
+                                    <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #007bff; border: none;">
+                                        <i class="fa fa-users"></i> Participated
+                                    </button>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'winner1' j.product.id %}">
+                                    <button type="submit" class="btn btn-dark" style="width: 100%; background-color: #343a40; border: none;">
+                                        <i class="fa fa-user"></i> Winner
+                                    </button>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<div class="container" style="background-color:rgb(31, 41, 55); padding:20px; margin-top:5%; border-radius:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <h2 style=" color:#00bfff; text-align:center;">Send Feedback</h2>
+    <hr style="border-color:#00bfff;">
+
+    <div class="container-fluid" style="width:70%; margin-top:3%;">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputDate" style="color:#ffffff;">Date</label>
+                    <input type="text" class="form-control" name="date" value="{{date1}}" id="inputDate" readonly style="background-color:#333333; color:#ffffff; border-color:#00bfff;">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputUsername" style="color:#ffffff;">Username</label>
+                    <input type="text" class="form-control" name="uname" value="{{request.user.username}}" id="inputUsername" readonly style="background-color:#333333; color:#ffffff; border-color:#00bfff;">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail" style="color:#ffffff;">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{request.user.email}}" id="inputEmail" readonly style="background-color:#333333; color:#ffffff; border-color:#00bfff;">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputContact" style="color:#ffffff;">Contact</label>
+                    <input type="number" class="form-control" name="contact" value="{{pro.contact}}" id="inputContact" readonly style="background-color:#333333; color:#ffffff; border-color:#00bfff;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputDescription" style="color:#ffffff;">Description</label>
+                <textarea class="form-control" id="inputDescription" name="desc" rows="3" style="background-color:#333333; color:#ffffff; border-color:#00bfff;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color:#00bfff; border:none;">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% if terror %}
+<script>
+    alert('Feedback sent successfully');
+</script>
+{% endif %}
+
+{% endblock %}

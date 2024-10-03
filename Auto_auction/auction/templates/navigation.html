@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Online Auction Service System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <link rel = stylesheet href = "//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+  </script>
+  
+  
+  <style>
+    
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: rgb(17, 24, 39); /* Dark background color */
+        color: #e0e0e0; /* Light text color */
+    }
+
+    .container-fluid {
+        padding: 1%;
+    }
+
+    #myInput {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 20%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #444; /* Darker border color */
+        border-radius: 5px;
+        margin-bottom: 12px;
+        color: #e0e0e0; /* Light text color */
+        background-color: #333; /* Dark background for input */
+    }
+
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #444; /* Darker border color */
+        font-size: 18px;
+        background-color: #1e1e1e; /* Dark background for table */
+    }
+
+    #myTable th {
+        text-align: left;
+        padding: 12px;
+        background-color: #333; /* Dark background for table headers */
+        color: #e0e0e0; /* Light text color */
+    }
+
+    #myTable td {
+        text-align: left;
+        padding: 12px;
+        color: #e0e0e0; /* Light text color */
+    }
+
+    #myTable tr {
+        border-bottom: 1px solid #444; /* Darker border color */
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+        background-color: #2c2c2c; /* Slightly lighter dark background for hover */
+    }
+
+    .button {
+        background-color: #9b59b6; /* Purple for buttons */
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 15px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #8e44ad; /* Darker purple for hover */
+    }
+
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #333; /* Dark background for scrollbar track */
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #9b59b6; /* Purple for scrollbar thumb */
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #8e44ad; /* Darker purple for hover */
+    }
+
+    .nav-link {
+        transition: color 0.3s ease, background-color 0.3s ease;
+        color: #e0e0e0; /* Light text color */
+    }
+
+    .nav-link:hover {
+        color: #9b59b6 !important; /* Purple color on hover */
+        font-weight: bold;
+        background-color: #333; /* Dark background on hover */
+        border-radius: 10px;
+    }
+
+    .navbar-brand:hover {
+        font-weight: bold;
+    }
+
+    .navbar-expand-sm {
+        background-color: #2c2c2c; /* Dark background for navbar */
+    }
+</style>
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="container-fluid text-center" style="padding: 2% 0;">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <span style="font-size: 40px; font-weight: bold; color: #e0e0e0;"> 
+                <span >Online Auction</span> 
+                <span >Service System</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-expand-sm" style="background-color:#b19cd9">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#" style="color:lime"></a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    {% if request.user.username %}
+    {% if error == "pat"%}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile1' %}" style="color:black;margin-left:200px">
+      <ion-icon style="margin-right:4px" name="home-sharp"></ion-icon> HOME</a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'view_auction' 0 %}" style="color:black">
+      <ion-icon style="margin-right:4px" name="eye"></ion-icon> Auction</a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link"  style="color:black">
+      <ion-icon style="margin-right:4px" name="eye"></ion-icon> Bidding Status</a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'feedback' %}" style="color:black">
+      <ion-icon style="margin-right:4px" name="aperture"></ion-icon> Feedback</a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'change_password1' %}" style="color:black">
+      <ion-icon style="margin-right:4px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>
+  </li>
+
+    {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile1' %}" style="color:black;margin-left:200px"><ion-icon style="margin-right:2px" name="home-sharp"></ion-icon> HOME</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_product' %}" style="color:black">
+          <ion-icon style="margin-right:2px" name="eye"></ion-icon> Add Product</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link"  style="color:black">
+          <ion-icon style="margin-right:2px" name="eye"></ion-icon> All Product</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color:black"><ion-icon style="margin-right:2px" name="aperture"></ion-icon> Bidding Status</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'feedback' %}" style="color:black"><ion-icon style="margin-right:2px" name="send"></ion-icon> Feedback</a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'change_password1' %}" style="color:black"><ion-icon style="margin-right:2px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>
+        </li>
+    </div>
+
+
+
+
+        {% endif %}
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home'  %}" style="color:black;margin-left:200px">
+            <ion-icon style="margin-right:2px" name="home-sharp"></ion-icon>HOME</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}" style="color:black">
+            <ion-icon style="margin-right:2px" name="briefcase-sharp"></ion-icon>ABOUT</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}" style="color:black">
+            <ion-icon style="margin-right:2px" name="phone-portrait-sharp"></ion-icon>CONTACT</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login_user' %}" style="color:black;text-align:right">
+            <ion-icon style="margin-right:2px" name="log-in-sharp"></ion-icon>USER LOGIN</a>
+        </li>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}" style="color:black">
+            <ion-icon style="margin-right:2px" name="power-sharp"></ion-icon>LOGOUT</a>
+        </li>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <ion-icon style="margin-right:4px;color:black" name="person-circle-sharp"></ion-icon>Welcome {{request.user.first_name}}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'profile1' %}">VIEW PROFILE</a>
+                <a class="dropdown-item" href="{% url 'edit_profile1' %}">EDIT PROFILE</a>
+                <a class="dropdown-item" href="{% url 'change_password1' %}">CHANGE PASSWORD</a>
+            </div>
+        </div>
+    {% endif %}
+  </ul>
+</nav>
+
+
+{% block body %}
+
+{% endblock %}
+
+
+
+</body></html>

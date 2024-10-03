@@ -1,0 +1,38 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<div class="container" style="width:100%;background:rgb(17 24 39); color: #e0e0e0;">
+    <center>
+        <h2 style="margin-top:5%;font-weight:bold;color:#00bfff;">View Product</h2>
+    </center>
+    <hr>
+    <div class="container-fluid" style="background:rgb(17 24 39);">
+        <h3 align="center" style="color:#e0e0e0;">{{message1}}</h3>
+        <div class="row" style="margin-bottom:5%;">
+            {% for j in pro %}
+                <div class="col-md-3 mb-4">
+                    <div style="padding:10px;width:100%;border-radius:8px;border:1px solid #444;background:rgb(31, 41, 55);transition:transform 0.3s ease, box-shadow 0.3s ease;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
+                        <center>
+                            <button style="width:70%;background-color:#28a745;border:none;color:white;padding:10px;border-radius:5px;">{{j.auction_time}}</button>
+                            <img src="{{j.images.url}}" style="margin-top:1%;width:170px;height:170px;">
+                        </center>
+                        <div style="padding:10px;">
+                            <h5 style="color:#e0e0e0;font-weight:bold;">{{j.name}}</h5>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <span style="font-weight:bold;color:#1e90ff;">&#8377; : {{j.min_price}}</span>
+                                </div>
+                                <div class="col-md-5" align="right">
+                                    <span style="font-weight:bold;color:#6c757d;">
+                                        <a  style="color:#6c757d;">Detail</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

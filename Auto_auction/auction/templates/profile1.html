@@ -1,0 +1,74 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<div class="container" style="margin-top:5%; margin-bottom:5%; background-color:rgb(31, 41, 55); border-radius:10px; padding:20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <h2 style="font-family:'Lora'; color:#00bfff; text-align:center; margin-top:5%;">My Profile</h2>
+    <hr style="border-color:#00bfff;">
+
+    <div class="container-fluid" style="width:80%; margin-bottom:5%;">
+        <div class="row">
+            <div class="col-md-6" style="color:#E6120E;">
+                <strong>Full Name:</strong>
+            </div>
+            <div class="col-md-6" style="color:#00FF00;">
+                {{pro.user.first_name}} {{pro.user.last_name}}
+            </div>
+        </div>
+        <hr style="border-color:#00bfff;">
+
+        <div class="row">
+            <div class="col-md-6" style="color:#E6120E;">
+                <strong>Image:</strong>
+            </div>
+            <div class="col-md-6">
+                <img src="{{pro.image.url}}" style="width:100px; height:130px; border-radius:10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+            </div>
+        </div>
+        <hr style="border-color:#00bfff;">
+
+        <div class="row">
+            <div class="col-md-6" style="color:#E6120E;">
+                <strong>Email Id:</strong>
+            </div>
+            <div class="col-md-6" style="color:#00FF00;">
+                {{pro.user.email}}
+            </div>
+        </div>
+        <hr style="border-color:#00bfff;">
+
+        <div class="row">
+            <div class="col-md-6" style="color:#E6120E;">
+                <strong>Date of Birth:</strong>
+            </div>
+            <div class="col-md-6" style="color:#00FF00;">
+                {{pro.dob}}
+            </div>
+        </div>
+        <hr style="border-color:#00bfff;">
+
+        <div class="row">
+            <div class="col-md-6" style="color:#E6120E;">
+                <strong>Contact:</strong>
+            </div>
+            <div class="col-md-6" style="color:#00FF00;">
+                {{pro.contact}}
+            </div>
+        </div>
+        <hr style="border-color:#00bfff;">
+
+        <div class="row">
+            <div class="col-md-6" style="color:#E6120E;">
+                <strong>Address:</strong>
+            </div>
+            <div class="col-md-6" style="color:#00FF00;">
+                {{pro.address}}
+            </div>
+        </div>
+        <hr style="border-color:#00bfff;">
+
+        <a href="{% url 'edit_profile1' %}">
+            <button class="btn btn-primary" style="width:100%; background-color:#00bfff; border:none;">Edit Profile</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
