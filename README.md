@@ -1,4 +1,4 @@
-# Auction System
+
 # Auto Auction System
 
 ## Project Overview
