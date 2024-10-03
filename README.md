@@ -16,8 +16,8 @@ This Auto Auction System is a web-based platform that facilitates online auction
 ## Technology Stack
 - Backend: Python with Django framework
 - Frontend: HTML, CSS, JavaScript
-- Database: (Specify your database, e.g., PostgreSQL, MySQL)
-- Deployment: Vercel
+- Database: SQLite
+
 
 ## Setup and Installation
 1. Clone the repository
@@ -36,5 +36,5 @@ This Auto Auction System is a web-based platform that facilitates online auction
 
 
 
-## admin page
+
 
